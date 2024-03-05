@@ -17,12 +17,12 @@ function encrypt(v::Vector{UInt32}, k::Vector{UInt32})
     v[2]=v1
 end
 
-function encrypt_block(data::Vector{Uint32}, key::Uint32)
-    blocks::Uint32
-    i::Uint32
-    len::Uint32 = length(data)
+function encrypt_block(data::Vector{UInt32}, key::UInt32)
+    blocks::UInt32
+    i::UInt32
+    len::UInt32 = length(data)
 
-    data32::Uint32 = data
+    data32::UInt32 = data
     
     blocks = (((len) + 7) / 8) + 1
     data32[(blocks*2) - 1] = len;
@@ -37,6 +37,6 @@ end
 v::Vector{UInt32} = UInt32[1,2]
 k::Vector{UInt32} = UInt32[1,2,3,4]
 
-encrypt(v,k)
+encrypt_block(v, k)
 
 print(v)
