@@ -17,19 +17,19 @@ function encrypt(v::Vector{UInt32}, k::Vector{UInt32})
     v[2]=v1
 end
 
-function encrypt_block(data::Vector{UInt32}, key::UInt32)
-    blocks::UInt32
-    i::UInt32
+function encrypt_block(data::Vector{UInt32}, key::Vector{UInt32})
+    blocks::UInt32 = 0
+    #i::UInt32 =0
     len::UInt32 = length(data)
 
-    data32::UInt32 = data
+    #data32::UInt32 = data
     
-    blocks = (((len) + 7) / 8) + 1
-    data32[(blocks*2) - 1] = len;
+    blocks = trunc(((len) + 7) / 8) + 1
+    data[blocks] = len;
     len = blocks * 8
 
-    for i = 0:blocks
-        encrypt(data32[i*2], key)
+    for i = 1:blocks
+        encrypt(data[i*2], key)
     end
 
 end
